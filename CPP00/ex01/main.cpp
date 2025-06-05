@@ -6,14 +6,37 @@
 /*   By: hdougoud <hdougoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 20:51:56 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/06/05 16:16:34 by hdougoud         ###   ########.fr       */
+/*   Updated: 2025/06/05 23:54:48 by hdougoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <string>
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
+
+static int convert_entry(PhoneBook *PhoneBookInstance)
+{
+	int	selection;
+	std::string	entry;
+
+	std::cout << "Select the contact you want to visualize" << std::endl;
+	std::getline(std::cin, entry);
+	try
+	{
+		selection = (std::stoi(entry) - 1);
+		if (selection < 0 || selection > 7 || !PhoneBookInstance->contact[selection].conigured)
+		{
+			std::cout << "Invalid input" << std::endl;
+			return (-1);
+		}
+	}
+	catch(std::logic_error)
+	{
+		std::cout << "Invalid argument " << entry << " is invalid entry" << std::endl;
+		return (-1);
+	}
+	return (selection);
+}
 
 static std::string	print_preview(std::string str)
 {
@@ -32,24 +55,18 @@ static std::string	print_preview(std::string str)
 
 static void	search_contact(PhoneBook *PhoneBookInstance)
 {
-	std::string	entry;
-	int	selection = -1;
-
 	for (int i = 0; PhoneBookInstance->contact[i].conigured; i++)
 	{
-		std::cout << i + 1 << '|'
+		std::cout << i + 1 << "         " << '|'
 		<< print_preview(PhoneBookInstance->contact[i].frist_name) << '|'
 		<< print_preview(PhoneBookInstance->contact[i].last_name) << '|'
 		<< print_preview(PhoneBookInstance->contact[i].nickname) << std::endl;
 	}
-	std::cout << std::endl << "Select the contact you want to visualize" << std::endl;
-	std::cin >> entry;
-	selection = (std::stoi(entry) - 1);
-	if (selection == -1 || selection > 9 || !PhoneBookInstance->contact[selection].conigured)
-	{
-		std::cout << "Invalid input" << std::endl;
+
+	int selection = convert_entry(PhoneBookInstance);
+	if (selection == -1)
 		return ;
-	}
+	
 	std::cout << std::endl;
 	std::cout << PhoneBookInstance->contact[selection].frist_name << std::endl
 		<< PhoneBookInstance->contact[selection].last_name << std::endl
