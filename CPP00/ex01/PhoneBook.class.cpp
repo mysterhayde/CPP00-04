@@ -6,7 +6,21 @@
 /*   By: hdougoud <hdougoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 10:35:14 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/06/05 10:37:57 by hdougoud         ###   ########.fr       */
+/*   Updated: 2025/06/05 11:28:21 by hdougoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
+#include "PhoneBook.class.hpp"
+
+PhoneBook::PhoneBook(void)
+{
+	std::cout << "Constructor called" << std::endl;
+	return;
+}
+
+PhoneBook::~PhoneBook(void)
+{
+	std::cout << "Destructor called" << std::endl;
+	return;
+}
