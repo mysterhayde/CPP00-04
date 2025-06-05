@@ -6,7 +6,7 @@
 /*   By: hdougoud <hdougoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 20:51:56 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/06/05 23:54:48 by hdougoud         ###   ########.fr       */
+/*   Updated: 2025/06/06 00:08:11 by hdougoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,11 @@ static void	add_contact(PhoneBook *PhoneBookInstance)
 	std::cout << "Please entrer contact information" << std::endl;
 
 	if (contacts >= 8)
-		std::cout << "No enough memory" << std::endl;
+	{
+		for(int i = 8; i < 1; i--)
+			std::swap(PhoneBookInstance->contact[i], PhoneBookInstance->contact[i - 1]);
+		contacts = 8;
+	}
 
 	PhoneBookInstance->contact[contacts].conigured = 1;
 	std::cout << std::endl << "First name" << std::endl;
