@@ -6,12 +6,12 @@
 /*   By: hdougoud <hdougoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 10:35:14 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/06/05 11:28:21 by hdougoud         ###   ########.fr       */
+/*   Updated: 2025/06/05 13:10:07 by hdougoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "PhoneBook.class.hpp"
+#include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook(void)
 {
