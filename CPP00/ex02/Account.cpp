@@ -6,7 +6,7 @@
 /*   By: hdougoud <hdougoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:56:20 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/06/09 19:18:16 by hdougoud         ###   ########.fr       */
+/*   Updated: 2025/06/09 22:56:53 by hdougoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,30 @@ Account::~Account()
 	return;
 }
 
-int	getNbAccounts(void)
+int	Account::getNbAccounts(void)
 {
-	
+	return Account::_nbAccounts;
 }
 
-int	getTotalAmount(void)
+int	Account::getTotalAmount(void)
 {
-	
+	return Account::_totalAmount;
 }
 
-int	getNbDeposits(void)
+int	Account::getNbDeposits(void)
 {
-	
+	return Account::_totalNbDeposits;
 }
 
-int	getNbWithdrawals(void)
+int	Account::getNbWithdrawals(void)
 {
-	
+	return Account::_totalNbWithdrawals;
 }
 
-void	displayAccountsInfos(void)
+void	Account::displayAccountsInfos(void)
 {
-	
+	std::cout << getNbAccounts << std::endl;
+	std::cout << getTotalAmount << std::endl;
+	std::cout << getNbDeposits << std::endl;
+	std::cout << getNbWithdrawals << std::endl;
 }
