@@ -1,8 +1,8 @@
-NAME	= megaphone
-CC		= g++
+NAME	= transactions
 FLAGS	= -Wall -Wextra -Werror -std=c++98
+CC		= g++
 
-SRCS	= megaphone.cpp
+SRCS	= tests.cpp Account.cpp
 OBJECT	= $(SRCS:.cpp=.o)
 
 all: $(NAME)

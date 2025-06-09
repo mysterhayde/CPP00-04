@@ -6,7 +6,7 @@
 /*   By: hdougoud <hdougoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 20:51:56 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/06/09 13:18:54 by hdougoud         ###   ########.fr       */
+/*   Updated: 2025/06/09 18:14:07 by hdougoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void	add_contact(PhoneBook *PhoneBookInstance)
 
 	if (contacts >= 8)
 	{
-		for(int i = 0; i < 8; i++)
+		for(int i = 0; i < 7; i++)
 			std::swap(PhoneBookInstance->contact[i], PhoneBookInstance->contact[i + 1]);
 		contacts = 7;
 	}
