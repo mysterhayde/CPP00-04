@@ -6,7 +6,7 @@
 /*   By: hdougoud <hdougoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:56:20 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/06/10 14:41:10 by hdougoud         ###   ########.fr       */
+/*   Updated: 2025/06/10 14:48:40 by hdougoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,26 @@ Account::~Account()
 	std::cout << "closed:" << std::endl;
 	_nbAccounts--;
 	return;
+}
+
+int	Account::getNbAccounts(void)
+{
+	return _nbAccounts;
+}
+
+int	Account::getTotalAmount(void)
+{
+	return _totalAmount;
+}
+
+int	Account::getNbDeposits(void)
+{
+	return _totalNbDeposits;
+}
+
+int	Account::getNbWithdrawals(void)
+{
+	return _totalNbWithdrawals;
 }
 
 void	Account::makeDeposit(int deposit)
@@ -96,26 +116,6 @@ void	Account::_displayTimestamp()
 	datetime = std::localtime(&timestamp);
 	std::strftime(buffer, 21, "[%Y%m%d_%H%M%S] ", datetime);
 	std::cout << buffer;
-}
-
-int	Account::getNbAccounts(void)
-{
-	return _nbAccounts;
-}
-
-int	Account::getTotalAmount(void)
-{
-	return _totalAmount;
-}
-
-int	Account::getNbDeposits(void)
-{
-	return _totalNbDeposits;
-}
-
-int	Account::getNbWithdrawals(void)
-{
-	return _totalNbWithdrawals;
 }
 
 void	Account::displayAccountsInfos(void)
