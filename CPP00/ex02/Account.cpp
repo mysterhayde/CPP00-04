@@ -6,60 +6,96 @@
 /*   By: hdougoud <hdougoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 18:56:20 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/06/09 23:48:41 by hdougoud         ###   ########.fr       */
+/*   Updated: 2025/06/10 14:41:10 by hdougoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <ctime>
 #include <iostream>
 #include "Account.hpp"
 
-Account::Account(int initial_deposit)
+int	Account::_nbAccounts = 0;
+int	Account::_totalAmount = 0;
+int	Account::_totalNbDeposits = 0;
+int Account::_totalNbWithdrawals = 0;
+
+Account::Account(int initial_deposit) : _accountIndex(_nbAccounts), _amount(initial_deposit), _nbDeposits(0), _nbWithdrawals(0)
 {
-	this->_accountIndex = _nbAccounts;
-	this->_amount = initial_deposit;
-	this->_nbDeposits = 0;
-	this->_nbWithdrawals = 0;
+	Account::_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ";";
+	std::cout << "amount:" << _amount << ';';
+	std::cout << "created:" << std::endl;
 	_nbAccounts++;
-	_totalAmount += initial_deposit;
-	_displayTimestamp();
-	std::cout << "\x1b[32;1m" << "Constructor called" << "\033[0m" << std::endl;
+	_totalAmount += this->_amount;
 	return;
 }
 
 Account::~Account()
 {
-	std::cout << "\x1b[31;1m" << "Destructor called" << "\033[0m" << std::endl;
+	Account::_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ";";
+	std::cout << "amount:" << _amount << ';';
+	std::cout << "closed:" << std::endl;
+	_nbAccounts--;
 	return;
 }
 
 void	Account::makeDeposit(int deposit)
 {
+	Account::_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ';';
+	std::cout << "p_amount:" << _amount<< ';';
+
 	this->_amount += deposit;
-	this->_totalNbDeposits += 1;
+	this->_nbDeposits += 1;
+	_totalAmount += deposit;
+	_totalNbDeposits++;
+
+	std::cout << "deposit:" << deposit << ';';
+	std::cout << "ammount:" << _amount << ';';
+	std::cout << "nb_deposits" << _nbDeposits << std::endl;
 }
 
 bool	Account::makeWithdrawal(int withdrawal)
 {
+	Account::_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ';';
+	std::cout << "p_amount:" << _amount<< ';';
+
 	if (this->_amount >= withdrawal)
 	{
 		this->_amount -= withdrawal;
+		this->_nbWithdrawals++;
+		_totalAmount -= withdrawal;
+		_totalNbWithdrawals++;
+		std::cout << "withdrawal:" << withdrawal << ';';
+		std::cout << "ammount:" << _amount << ';';
+		std::cout << "nb_withdrawals" << _nbWithdrawals << std::endl;
 		return (true);
 	}
+	std::cout << "withdrawal:refused" << std::endl;
 	return (false);
-}
-
-int	Account::checkAmount(void) const
-{
-	return Account::_amount;
 }
 
 void	Account::displayStatus(void) const
 {
-	_displayTimestamp();
+	Account::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ";";
 	std::cout << "ammount" << this->_amount << ";";
 	std::cout << "deposit:" << this->_nbDeposits << ";";
-	std::cout << "withdrawals:" << this->_nbWithdrawals << std::endl;
+	std::cout << "withdrawals:" << _nbWithdrawals << std::endl;
+}
+
+void	Account::_displayTimestamp()
+{
+	std::time_t		timestamp;
+	std::tm			*datetime;
+	char			buffer[20];
+
+	timestamp = std::time(nullptr);
+	datetime = std::localtime(&timestamp);
+	std::strftime(buffer, 21, "[%Y%m%d_%H%M%S] ", datetime);
+	std::cout << buffer;
 }
 
 int	Account::getNbAccounts(void)
@@ -84,8 +120,10 @@ int	Account::getNbWithdrawals(void)
 
 void	Account::displayAccountsInfos(void)
 {
-	std::cout << getNbAccounts << std::endl;
-	std::cout << getTotalAmount << std::endl;
-	std::cout << getNbDeposits << std::endl;
-	std::cout << getNbWithdrawals << std::endl;
+	Account::_displayTimestamp();
+	std::cout << "accounts:" << getNbAccounts() << ";";
+	std::cout << "total:" << getTotalAmount() << ";";
+	std::cout << "deposits:" << getNbDeposits() << ";";
+	std::cout << "withdrawals:" << getNbWithdrawals() << std::endl;
+
 }
