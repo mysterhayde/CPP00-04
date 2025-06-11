@@ -6,7 +6,7 @@
 /*   By: hdougoud <hdougoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 20:51:56 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/06/09 18:14:07 by hdougoud         ###   ########.fr       */
+/*   Updated: 2025/06/11 12:54:57 by hdougoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,22 @@ static void	search_contact(PhoneBook *PhoneBookInstance)
 		<< PhoneBookInstance->contact[selection].darkest_secret << std::endl << std::endl;
 }
 
+static std::string get_contact_info(std::string contact_info)
+{
+	std::string entry;
+
+	std::getline(std::cin, entry);
+	while(entry.empty())
+	{
+		std::cout << "\x1b[33;1m" << "The entry can't be empty" << std::endl;
+		std::cout << std::endl << contact_info << std::endl;
+		std::getline(std::cin, entry);
+	}
+	return (entry);
+}
+
 static void	add_contact(PhoneBook *PhoneBookInstance)
 {
-	std::string	entry;
 	static int	contacts;
 
 	std::cout << "Please entrer contact information" << std::endl;
@@ -91,24 +104,19 @@ static void	add_contact(PhoneBook *PhoneBookInstance)
 
 	PhoneBookInstance->contact[contacts].conigured = 1;
 	std::cout << std::endl << "First name" << std::endl;
-	std::getline(std::cin, entry);
-	PhoneBookInstance->contact[contacts].frist_name = entry;
+	PhoneBookInstance->contact[contacts].frist_name = get_contact_info("First name");
 
 	std::cout << std::endl << "Last name" << std::endl;
-	std::getline(std::cin, entry);
-	PhoneBookInstance->contact[contacts].last_name = entry;
+	PhoneBookInstance->contact[contacts].last_name = get_contact_info("Last name");
 
 	std::cout << std::endl << "Nickname" << std::endl;
-	std::getline(std::cin, entry);
-	PhoneBookInstance->contact[contacts].nickname = entry;
+	PhoneBookInstance->contact[contacts].nickname = get_contact_info("Nickname");
 
 	std::cout << std::endl << "Phone number" << std::endl;
-	std::getline(std::cin, entry);
-	PhoneBookInstance->contact[contacts].phone_number = entry;
+	PhoneBookInstance->contact[contacts].phone_number = get_contact_info("Phone number");
 
 	std::cout << std::endl << "Darkest secret" << std::endl;
-	std::getline(std::cin, entry);
-	PhoneBookInstance->contact[contacts].darkest_secret = entry;
+	PhoneBookInstance->contact[contacts].darkest_secret = get_contact_info("Darkest secret");
 
 	contacts++;
 	std::cout << std::endl;
