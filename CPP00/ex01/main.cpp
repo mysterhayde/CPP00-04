@@ -6,7 +6,7 @@
 /*   By: hdougoud <hdougoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 20:51:56 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/06/11 16:47:42 by hdougoud         ###   ########.fr       */
+/*   Updated: 2025/06/11 23:17:49 by hdougoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int main(void)
 		if (entry == "SEARCH")
 		{
 			std::cout << std::endl;
-			//search_contact(&PhoneBookInstance);
+			PhoneBookInstance.search_contact();
 		}
 		if (entry == "EXIT")
 			break;

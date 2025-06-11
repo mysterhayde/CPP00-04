@@ -6,7 +6,7 @@
 /*   By: hdougoud <hdougoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 10:05:28 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/06/11 16:41:59 by hdougoud         ###   ########.fr       */
+/*   Updated: 2025/06/11 23:37:41 by hdougoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ class PhoneBook
 		PhoneBook();
 		~PhoneBook();
 		void	add_contact_list();
+		void	search_contact() const;
 	private:
 		int		_contact_idx;
 		Contact	_contacts[8];

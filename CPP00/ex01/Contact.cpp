@@ -6,7 +6,7 @@
 /*   By: hdougoud <hdougoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 10:37:44 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/06/11 16:54:24 by hdougoud         ###   ########.fr       */
+/*   Updated: 2025/06/11 23:47:17 by hdougoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,6 @@ void	Contact::add_contact(void)
 	static int	contacts;
 
 	std::cout << "Please entrer contact information" << std::endl;
-
-	// if (contacts >= 8)
-	// {
-	// 	for(int i = 0; i < 7; i++)
-	// 		std::swap(this->contact[i], PhoneBookInstance->contact[i + 1]);
-	// 	contacts = 7;
-	// }
 
 	this->_configured = 1;
 	std::cout << std::endl << "First name" << std::endl;
@@ -71,3 +64,25 @@ std::string Contact::_get_contact_info(std::string contact_info)
 	}
 	return (entry);
 }
+
+void	Contact::show_contact_info() const
+{
+	std::cout << std::endl;
+	std::cout << this->_frist_name << std::endl;
+	std::cout << this->_last_name << std::endl;
+	std::cout << this->_nickname << std::endl;
+	std::cout << this->_phone_number << std::endl;
+	std::cout << this->_darkest_secret << std::endl;
+	std::cout << std::endl;
+}
+
+bool	Contact::show_preview_contact() const
+{
+	if (!this->_configured)
+		return (false);
+
+	//									USE IOMANIP FUNCTIONS
+	std::cout << "Preview contact" << std::endl;
+	return (true);
+}
+

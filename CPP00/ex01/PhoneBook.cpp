@@ -6,7 +6,7 @@
 /*   By: hdougoud <hdougoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 10:35:14 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/06/11 16:55:08 by hdougoud         ###   ########.fr       */
+/*   Updated: 2025/06/11 23:45:51 by hdougoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,41 @@ PhoneBook::~PhoneBook(void)
 
 void	PhoneBook::add_contact_list()
 {
-	std::cout << "current index :" << _contact_idx << std::endl;
+	if (_contact_idx == 7)
+	{
+		for(int i = 0; i < 7; i++)
+			std::swap(_contacts[i], _contacts[i + 1]);
+	}
+	
 	_contacts[_contact_idx].add_contact();
-	_contact_idx++;
+	if (_contact_idx < 8)
+		_contact_idx++;
+}
+
+void	PhoneBook::search_contact() const
+{
+	int	selection;
+	std::string	entry;
+
+	for (int i = 0; _contacts[i].show_preview_contact(); i++)
+		;
+
+	std::cout << "Select the contact you want to visualize" << std::endl;
+	std::getline(std::cin, entry);
+	try
+	{
+		selection = (std::stoi(entry) - 1);
+		if (selection < 0 || selection > 7 || selection >= _contact_idx)
+		{
+			std::cout << "Invalid input" << std::endl;
+			return;
+		}
+	}
+	catch(std::logic_error)
+	{
+		std::cout << "Invalid argument " << entry << " is invalid entry" << std::endl;
+		return;
+	}
+	
+	_contacts[selection].show_contact_info();
 }
