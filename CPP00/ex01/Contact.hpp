@@ -6,7 +6,7 @@
 /*   By: hdougoud <hdougoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 10:05:26 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/06/05 14:49:48 by hdougoud         ###   ########.fr       */
+/*   Updated: 2025/06/11 16:51:19 by hdougoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,17 @@
 class Contact
 {
 	public:
-		int			conigured = 0;
-		std::string	frist_name;
-		std::string	last_name;
-		std::string	nickname;
-		std::string	phone_number;
-		std::string	darkest_secret;
-		Contact(void);
-		~Contact(void);
+		Contact();
+		~Contact();
+		void	add_contact(void);
+	private:
+		int			_configured = 0;
+		std::string	_frist_name;
+		std::string	_last_name;
+		std::string	_nickname;
+		std::string	_phone_number;
+		std::string	_darkest_secret;
+		std::string	_get_contact_info(std::string contact_info);
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hdougoud <hdougoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 13:03:05 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/06/11 13:03:31 by hdougoud         ###   ########.fr       */
+/*   Updated: 2025/06/11 16:43:00 by hdougoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static std::string	print_preview(std::string str)
 
 void	search_contact(PhoneBook *PhoneBookInstance)
 {
-	for (int i = 0; PhoneBookInstance->contact[i].conigured && i <= 7; i++)
+	for (int i = 0; PhoneBookInstance->_contacts[i]._configured && i <= 7; i++)
 	{
 		std::cout << i + 1 << "         " << '|'
 		<< print_preview(PhoneBookInstance->contact[i].frist_name) << '|'
