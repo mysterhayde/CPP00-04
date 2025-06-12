@@ -6,7 +6,7 @@
 /*   By: hdougoud <hdougoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 10:35:14 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/06/12 14:23:56 by hdougoud         ###   ########.fr       */
+/*   Updated: 2025/06/13 01:15:12 by hdougoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	PhoneBook::add_contact_list()
 		_contact_idx = 7;
 	}
 	
-	_contacts[_contact_idx].add_contact();
+	if(!_contacts[_contact_idx].add_contact())
+		return;
 	_contact_idx++;
 }
 
@@ -63,6 +64,5 @@ void	PhoneBook::search_contact() const
 		std::cout << "Invalid argument " << entry << " is invalid entry" << std::endl;
 		return;
 	}
-	
-	_contacts[selection].show_contact_info();
+	_contacts[selection].show_contact_info(selection);
 }
