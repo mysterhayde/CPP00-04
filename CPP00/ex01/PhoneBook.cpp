@@ -6,7 +6,7 @@
 /*   By: hdougoud <hdougoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 10:35:14 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/06/11 23:45:51 by hdougoud         ###   ########.fr       */
+/*   Updated: 2025/06/12 14:23:56 by hdougoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ PhoneBook::~PhoneBook(void)
 
 void	PhoneBook::add_contact_list()
 {
-	if (_contact_idx == 7)
+	if (_contact_idx == 8)
 	{
 		for(int i = 0; i < 7; i++)
 			std::swap(_contacts[i], _contacts[i + 1]);
+		_contact_idx = 7;
 	}
 	
 	_contacts[_contact_idx].add_contact();
-	if (_contact_idx < 8)
-		_contact_idx++;
+	_contact_idx++;
 }
 
 void	PhoneBook::search_contact() const
@@ -43,9 +43,10 @@ void	PhoneBook::search_contact() const
 	int	selection;
 	std::string	entry;
 
-	for (int i = 0; _contacts[i].show_preview_contact(); i++)
+	for (int i = 0; _contacts[i].show_preview_contact(i) && i < 7; i++)
 		;
 
+	std::cout << std::endl;
 	std::cout << "Select the contact you want to visualize" << std::endl;
 	std::getline(std::cin, entry);
 	try

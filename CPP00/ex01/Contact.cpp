@@ -6,14 +6,15 @@
 /*   By: hdougoud <hdougoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 10:37:44 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/06/11 23:47:17 by hdougoud         ###   ########.fr       */
+/*   Updated: 2025/06/12 14:48:04 by hdougoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <iomanip>
 #include "Contact.hpp"
 
-Contact::Contact(void)
+Contact::Contact(void) : _configured(0)
 {
 	std::cout << "\x1b[32;1m" << "Constructor called" << "\033[0m" << std::endl;
 	return;
@@ -33,7 +34,7 @@ void	Contact::add_contact(void)
 
 	this->_configured = 1;
 	std::cout << std::endl << "First name" << std::endl;
-	this->_frist_name = _get_contact_info("First name");
+	this->_first_name = _get_contact_info("First name");
 
 	std::cout << std::endl << "Last name" << std::endl;
 	this->_last_name = _get_contact_info("Last name");
@@ -51,6 +52,51 @@ void	Contact::add_contact(void)
 	std::cout << std::endl;
 }
 
+
+void	Contact::show_contact_info() const
+{
+	std::cout << std::endl;
+	std::cout << this->_first_name << std::endl;
+	std::cout << this->_last_name << std::endl;
+	std::cout << this->_nickname << std::endl;
+	std::cout << this->_phone_number << std::endl;
+	std::cout << this->_darkest_secret << std::endl;
+	std::cout << std::endl;
+}
+
+bool	Contact::show_preview_contact(int i) const
+{
+	if (!this->_configured)
+		return(false);
+	
+	std::cout << i + 1 << std::setfill(' ') << std::setw(10);
+	std::cout << '|';
+	_print_preview_layout(this->_first_name);
+	std::cout << '|';
+	_print_preview_layout(this->_last_name);
+	std::cout << '|';
+	_print_preview_layout(this->_nickname);
+	std::cout << std::endl;
+	return (true);
+}
+
+void	Contact::_print_preview_layout(std::string str) const
+{
+	int	lenght;
+
+	lenght = str.length();
+	if (lenght < 10)
+		std::cout << str << std::setfill(' ') << std::setw(10 - lenght) << ' ';
+	else if (lenght == 10)
+		std::cout << str;
+	else
+	{
+		str.resize(9);
+		str.push_back('.');
+		std::cout << str;
+	}
+}
+
 std::string Contact::_get_contact_info(std::string contact_info)
 {
 	std::string entry;
@@ -64,25 +110,3 @@ std::string Contact::_get_contact_info(std::string contact_info)
 	}
 	return (entry);
 }
-
-void	Contact::show_contact_info() const
-{
-	std::cout << std::endl;
-	std::cout << this->_frist_name << std::endl;
-	std::cout << this->_last_name << std::endl;
-	std::cout << this->_nickname << std::endl;
-	std::cout << this->_phone_number << std::endl;
-	std::cout << this->_darkest_secret << std::endl;
-	std::cout << std::endl;
-}
-
-bool	Contact::show_preview_contact() const
-{
-	if (!this->_configured)
-		return (false);
-
-	//									USE IOMANIP FUNCTIONS
-	std::cout << "Preview contact" << std::endl;
-	return (true);
-}
-

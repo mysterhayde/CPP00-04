@@ -6,7 +6,7 @@
 /*   By: hdougoud <hdougoud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 15:38:00 by hdougoud          #+#    #+#             */
-/*   Updated: 2025/06/11 15:36:09 by hdougoud         ###   ########.fr       */
+/*   Updated: 2025/06/12 13:50:36 by hdougoud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 	{
 		for(int	j = 0; argv[i][j]; j++)
 			argv[i][j] = toupper(argv[i][j]);
-		std::cout << std::uppercase << argv[i];
+		std::cout << argv[i];
 	}
 	std::cout << std::endl;
 }
